@@ -21,7 +21,7 @@ node {
                 app.push()
             }
             */
-            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: ci-repo.training.rgielen.net, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'ci-repo.training.rgielen.net', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                 usr = USERNAME
                 pswd = PASSWORD
             }
