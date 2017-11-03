@@ -12,6 +12,10 @@
 
     <artifactId>hello-cd-ua</artifactId>
 
+    <properties>
+        <docker.network>zenrgie_services</docker.network>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -50,7 +54,7 @@
                                 </ports>
                                 <network>
                                     <mode>custom</mode>
-                                    <name>zenrgie_services</name>
+                                    <name>${docker.network}</name>
                                     <alias>${project.artifactId}</alias>
                                 </network>
                                 <wait>
