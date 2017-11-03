@@ -8,7 +8,7 @@ package net.rgielen.maven.web;
 public class HelloSayer {
 
     public String sayHello() {
-        return "Hallo!";
+        return "Hello!";
     }
 
 }
