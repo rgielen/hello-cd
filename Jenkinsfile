@@ -1,6 +1,6 @@
 node {
 
-    withMaven(maven:'Maven 3.3', mavenSettingsConfig: 'org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig1435422191538') {
+    withMaven(maven:'Maven 3.3', globalMavenSettingsConfig:'org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig1435422191538') {
 
         stage('Checkout') {
             checkout scm
