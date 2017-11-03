@@ -40,6 +40,7 @@
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <configuration>
+                    <autoCreateCustomNetworks>true</autoCreateCustomNetworks>
                     <images>
                         <image>
                             <name>repo.training.rgielen.net:6000/hello-cd:latest</name>
@@ -48,6 +49,11 @@
                                 <ports>
                                     <port>${server.port}:8080</port>
                                 </ports>
+                                <network>
+                                    <mode>custom</mode>
+                                    <name>zenrgie_services</name>
+                                    <alias>${project.artifactId}</alias>
+                                </network>
                                 <wait>
                                     <http>
                                         <url>http://${server.host}:${server.port}/</url>
@@ -66,7 +72,7 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>staop-image</id>
+                        <id>stop-image</id>
                         <phase>post-integration-test</phase>
                         <goals>
                             <goal>stop</goal>
