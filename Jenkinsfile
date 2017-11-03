@@ -33,7 +33,7 @@ node {
 
         stage ('User Acceptance Tests') {
             dir ('hello-cd-ua') {
-                sh 'mvn verify'
+                sh 'mvn verify -Dserver.port=8080 -Dserver.host=hello-cd-ua'
             }
         }
 
