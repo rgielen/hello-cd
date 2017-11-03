@@ -21,7 +21,7 @@ node {
                 app.push()
             }
             */
-            docker.withRegistry('https://repo.training.rgielen.net:6000', 'ci-repo.training.rgielen.net') {
+            docker.withRegistry('repo.training.rgielen.net:6000', 'ci-repo.training.rgielen.net') {
                 sh 'mvn deploy'
             }
         }
