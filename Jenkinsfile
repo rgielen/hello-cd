@@ -8,10 +8,6 @@ node {
 
         stage('Build') {
             sh 'mvn clean package'
-
-            def pom = readMavenPom file:'pom.xml'
-            print pom.version
-            env.version = pom.version
         }
 
         stage('Integration Tests') {
@@ -25,8 +21,11 @@ node {
                 app.push()
             }
             */
-            docker.withRegistry('https://repo.training.rgielen.net:6000', 'ci-repo.training.rgielen.net') {
-                sh 'mvn deploy'
+            withMaven(maven: 'Maven',
+                    mavenSettingsConfig: 'org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig1435422191538') {
+                docker.withRegistry('https://repo.training.rgielen.net:6000', 'ci-repo.training.rgielen.net') {
+                    sh 'mvn deploy'
+                }
             }
         }
 
