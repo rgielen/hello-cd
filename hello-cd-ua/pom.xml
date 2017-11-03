@@ -82,5 +82,26 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>jenkins-docker</id>
+            <properties>
+                <server.host>${project.artifactId}</server.host>
+                <server.port>8080</server.port>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <configuration>
+                            <autoCreateCustomNetworks>false</autoCreateCustomNetworks>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     
 </project>
