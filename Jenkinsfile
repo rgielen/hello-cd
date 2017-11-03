@@ -21,7 +21,12 @@ node {
                 app.push()
             }
             */
-            docker.withRegistry('repo.training.rgielen.net:6000', 'ci-repo.training.rgielen.net') {
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: ci-repo.training.rgielen.net, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                usr = USERNAME
+                pswd = PASSWORD
+            }
+            docker.withRegistry('https://repo.training.rgielen.net:6000', 'ci-repo.training.rgielen.net') {
+                sh "docker login -u ${usr} -p ${pswd} repo.training.rgielen.net:6000"
                 sh 'mvn deploy'
             }
         }
