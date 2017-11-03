@@ -11,7 +11,7 @@ node {
         }
 
         stage('Integration Tests') {
-            sh 'mvn verify'
+            sh 'mvn verify -Pintegration-test'
         }
 
         stage('Push') {
