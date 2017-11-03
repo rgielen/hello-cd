@@ -36,6 +36,44 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>repo.training.rgielen.net:6000/hello-cd:latest</name>
+                            <run>
+                                <namingStrategy>none</namingStrategy>
+                                <ports>
+                                    <port>${server.port}:8080</port>
+                                </ports>
+                                <wait>
+                                    <http>
+                                        <url>http://${server.host}:${server.port}/</url>
+                                    </http>
+                                </wait>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-image</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>staop-image</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     
