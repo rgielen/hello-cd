@@ -1,6 +1,6 @@
 node {
 
-    withMaven(maven:'Maven 3.3') {
+    withMaven(maven:'Maven 3.3', mavenSettingsConfig: 'org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig1435422191538') {
 
         stage('Checkout') {
             checkout scm
@@ -21,11 +21,8 @@ node {
                 app.push()
             }
             */
-            withMaven(maven: 'Maven',
-                    mavenSettingsConfig: 'org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig1435422191538') {
-                docker.withRegistry('https://repo.training.rgielen.net:6000', 'ci-repo.training.rgielen.net') {
-                    sh 'mvn deploy'
-                }
+            docker.withRegistry('https://repo.training.rgielen.net:6000', 'ci-repo.training.rgielen.net') {
+                sh 'mvn deploy'
             }
         }
 
