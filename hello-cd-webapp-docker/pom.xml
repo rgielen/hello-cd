@@ -48,6 +48,12 @@
                                     </inline>
                                 </assembly>
                             </build>
+                            <run>
+                                <namingStrategy>none</namingStrategy>
+                                <ports>
+                                    <port>${server.port}:8080</port>
+                                </ports>
+                            </run>
                         </image>
                     </images>
                 </configuration>
