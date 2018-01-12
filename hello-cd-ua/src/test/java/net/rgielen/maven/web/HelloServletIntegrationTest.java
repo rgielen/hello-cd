@@ -27,7 +27,7 @@ public class HelloServletIntegrationTest {
                 .build();
 
         Response response = client.newCall(request).execute();
-        assertEquals("Hallo!\n", response.body().string());
+        assertEquals("Hello!\n", response.body().string());
     }
 
 }
