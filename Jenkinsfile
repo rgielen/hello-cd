@@ -25,10 +25,12 @@ node {
                 usr = USERNAME
                 pswd = PASSWORD
             }
-            docker.withRegistry('registry.training.rgielen.net', 'repo.training.rgielen.net-ci') {
-                //sh "docker login -u ${usr} -p ${pswd} registry.training.rgielen.net"
-                sh 'mvn deploy'
+/*
+            docker.withRegistry('https://registry.training.rgielen.net', 'repo.training.rgielen.net-ci') {
             }
+*/
+            sh "docker login -u ${usr} -p ${pswd} registry.training.rgielen.net"
+            sh 'mvn deploy'
         }
 
         stage ('User Acceptance Tests') {
