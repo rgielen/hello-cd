@@ -22,15 +22,13 @@ node {
             }
             */
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'repo.training.rgielen.net-ci', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-                usr = USERNAME
-                pswd = PASSWORD
+                sh "docker login -u ${USERNAME} -p ${PASSWORD} registry.training.rgielen.net"
+                sh 'mvn deploy'
             }
-/*
+            /* with plain docker push, one would use it within:
             docker.withRegistry('https://registry.training.rgielen.net', 'repo.training.rgielen.net-ci') {
             }
-*/
-            sh "docker login -u ${usr} -p ${pswd} registry.training.rgielen.net"
-            sh 'mvn deploy'
+            */
         }
 
         stage ('User Acceptance Tests') {
