@@ -11,7 +11,7 @@ node {
         }
 
         stage('Integration Tests') {
-            sh 'mvn verify -Pintegration-test'
+            sh 'mvn verify -Pintegration-test -Dskip.surefire.tests=true'
         }
 
         stage('Push') {
