@@ -15,18 +15,17 @@ node {
         }
 
         stage('Push') {
-            /*
-            dir ('hello-cd-webapp-docker') {
-                def app = docker.build "repo.training.rgielen.net:6000/hello-cd-webapp-docker:${env.version}"
-                app.push()
-            }
-            */
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'repo.training.rgielen.net-ci', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                 sh "docker login -u ${USERNAME} -p ${PASSWORD} registry.training.rgielen.net"
                 sh 'mvn deploy'
             }
-            /* with plain docker push, one would use it within:
+            // with plain docker build/push, a configuration could look like
+            /*
             docker.withRegistry('https://registry.training.rgielen.net', 'repo.training.rgielen.net-ci') {
+                dir ('hello-cd-webapp-docker') {
+                    def app = docker.build "registry.training.rgielen.net/hello-cd-webapp-docker:${env.version}"
+                    app.push()
+                }
             }
             */
         }
