@@ -29,7 +29,7 @@
                 <configuration>
                     <images>
                         <image>
-                            <name>repo.training.rgielen.net:6000/hello-cd:latest</name>
+                            <name>registry.training.rgielen.net/hello-cd:latest</name>
                             <build>
                                 <dockerFile>Dockerfile</dockerFile>
                                 <assembly>
