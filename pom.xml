@@ -32,6 +32,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
 
+        <skip.surefire.tests>false</skip.surefire.tests>
         <server.host>localhost</server.host>
         <server.port>40080</server.port>
     </properties>
@@ -81,6 +82,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
                     <configuration>
+                        <skipTests>${skip.surefire.tests}</skipTests>
                         <excludes>
                             <exclude>**/*IntegrationTest*</exclude>
                         </excludes>

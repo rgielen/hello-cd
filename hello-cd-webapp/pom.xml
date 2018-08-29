@@ -13,10 +13,6 @@
     <artifactId>hello-cd-webapp</artifactId>
     <packaging>war</packaging>
 
-    <properties>
-        <skip.surefire.tests>false</skip.surefire.tests>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -42,14 +38,6 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <skipTests>${skip.surefire.tests}</skipTests>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
     <profiles>
