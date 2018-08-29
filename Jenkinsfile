@@ -1,6 +1,6 @@
 node {
 
-    withMaven(maven:'Maven 3.3', globalMavenSettingsConfig:'org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig1435422191538') {
+    withMaven(maven:'Maven 3.5', globalMavenSettingsConfig:'training.rgielen.net-mavensettings') {
 
         stage('Checkout') {
             checkout scm
@@ -21,12 +21,12 @@ node {
                 app.push()
             }
             */
-            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'ci-repo.training.rgielen.net', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'repo.training.rgielen.net-ci', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                 usr = USERNAME
                 pswd = PASSWORD
             }
-            docker.withRegistry('https://repo.training.rgielen.net:6000', 'ci-repo.training.rgielen.net') {
-                sh "docker login -u ${usr} -p ${pswd} repo.training.rgielen.net:6000"
+            docker.withRegistry('https://registry.training.rgielen.net', 'repo.training.rgielen.net-ci') {
+                sh "docker login -u ${usr} -p ${pswd} registry.training.rgielen.net"
                 sh 'mvn deploy'
             }
         }
